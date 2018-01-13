@@ -9,19 +9,34 @@
 <?php
     require('../mysql_data.php');
 
-    $link = mysqli_connect($db_data["host"], $db_data["user"], $db_data["password"]);
-    if (!$link) {
-        die('接続失敗です。'.mysqli_error());
+    try{
+        $db_link = $pdo = new PDO("mysql:dbname=testdb;host=localhost;charset=utf8" , $db_data["user"] , $db_data["password"],
+            array( PDO::ATTR_PERSISTENT => true ) 
+        );
+
+    }catch (PDOException $e) {
+        exit('データベース接続失敗。'.$e->getMessage());
     }
+    $stmt = $db_link->query('SHOW TABLES');
 
-    print('<h2 style="text-align:center;"><i class="fa fa-handshake-o" aria-hidden="true"></i>mysql接続に成功しました。</h2>');
+    // mysql接続成功メッセ
+    print('<h3 style="text-align:center;"><i class="fa fa-handshake-o" aria-hidden="true"></i>mysql接続に成功しました。</h3>');
+    
+    // テーブル表示
+    print '<table style="margin:10 auto 0;" border="1"><tr>';
+        
+    while($tables = $stmt->fetch(PDO::FETCH_ASSOC) ){
+        print '<td>'.$tables["Tables_in_testdb"].'</td>';
+    }
+    print '</tr></table>';
 
-    // MySQLに対する処理
 
-    $close_flag = mysqli_close($link);
 
-    if ($close_flag){
-        print('<h2 style="text-align:center;"><i class="fa fa-hand-rock-o" aria-hidden="true"></i>切断に成功しました。</h2>');
+
+
+    $db_link = null;
+    if (!$db_link){
+        print('<h3 style="text-align:center;"><i class="fa fa-hand-rock-o" aria-hidden="true"></i>切断に成功しました。</h3>');
     }
 ?>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
