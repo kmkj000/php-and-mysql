@@ -13,8 +13,6 @@
 
     while($tables = $stmt->fetch(PDO::FETCH_ASSOC) ){
         $data[] = $tables["Tables_in_testdb"];
-        // $tableName = $tables["Tables_in_testdb"];
-        // print '<tr><td>'.$tableName.'</td></tr>';
     }
     echo json_encode($data);
     exit;
