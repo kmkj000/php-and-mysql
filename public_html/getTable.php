@@ -1,7 +1,7 @@
 <?php
 
     require('../mysql_data.php');
-    $db_link = $pdo = new PDO("mysql:dbname=testdb;host=localhost;charset=utf8" , $db_data["user"] , $db_data["password"],
+    $db_link = new PDO("mysql:dbname=testdb;host=localhost;charset=utf8" , $db_data["user"] , $db_data["password"],
         array( PDO::ATTR_PERSISTENT => true )
     );
     //main

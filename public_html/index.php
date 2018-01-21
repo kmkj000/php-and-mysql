@@ -13,7 +13,7 @@
     require('../mysql_data.php');
 
     try{
-        $db_link = $pdo = new PDO("mysql:dbname=testdb;host=localhost;charset=utf8" , $db_data["user"] , $db_data["password"],
+        $db_link = new PDO("mysql:dbname=$db_data[db];host=$db_data[host];charset=utf8" , $db_data["user"] , $db_data["password"],
             array( PDO::ATTR_PERSISTENT => true )
         );
 
