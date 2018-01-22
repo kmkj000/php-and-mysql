@@ -2,7 +2,7 @@
     $db_data = array(               
         "host" => "localhost",
         "db" => "testdb",
-        "user" => "root",
-        "password" => ""
+        "user" => "testuser",
+        "password" => "Passw0rd"
     )
 ?>
