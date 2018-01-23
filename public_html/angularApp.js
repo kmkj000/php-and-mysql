@@ -19,6 +19,7 @@ app.factory('SharedScopes', function($rootScope) {
 
 //$httpでPOST使って送るときのヘッダ情報自動
 app.config(function ($httpProvider) {
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
     $httpProvider.defaults.transformRequest = function(data){
         if (data === undefined) {
             return data;
@@ -77,9 +78,9 @@ app.controller('SelectView',function($scope , $http , SharedScopes){
         })
         //成功時の処理
         .success(function(response){
-            $scope.selectDatas = data.selectDatas;
+            $scope.selectDatas = response.selectDatas;
             //データが一つもなかった場合
-            if($scope.selectDatas.length == 0) {
+            if($scope.selectDatas == null || $scope.selectDatas.length == 0) {
                 $scope.dataExists=false;
                 $scope.tableName = val;
             }
