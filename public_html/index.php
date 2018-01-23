@@ -40,7 +40,10 @@ print('<h3 style="text-align:center;"><i class="fa fa-handshake-o" aria-hidden="
 
         <div style="padding-top:30px;"  ng-controller="SelectView" ng-show="tableClick" ng-init="tableClick=false">
             <table ng-cloak ng-show="dataExists" ng-init="dataExists=true" class="table table-bordered" style="margin:auto;">
-                <tr class="success"><th>テーブルデータ一覧<i ng-show="loading" class="fa fa-refresh fa-spin fa-2x fa-fw" /></th></tr>
+                <tr class="success"><th colspan="{{tableLength}}">テーブルデータ一覧<i ng-show="loading" class="fa fa-refresh fa-spin fa-2x fa-fw" /></th></tr>
+                <tr>
+                    <th ng-repeat="tableStruct in tableStructs">{{tableStruct}}</th>
+                </tr>
                 <tr ng-repeat="selectData in selectDatas">
                     <td ng-cloak>{{selectData}}</td>
                 </tr>

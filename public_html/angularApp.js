@@ -78,6 +78,11 @@ app.controller('SelectView',function($scope , $http , SharedScopes){
         })
         //成功時の処理
         .success(function(response){
+            console.log(response);
+
+            //テーブルカラム名取得
+            $scope.tableStructs = response.tableStructs
+            $scope.tableLength = $scope.tableStructs.length;
             $scope.selectDatas = response.selectDatas;
             //データが一つもなかった場合
             if($scope.selectDatas == null || $scope.selectDatas.length == 0) {
