@@ -41,7 +41,6 @@ app.controller('TableView',function($scope , $http , SharedScopes){
     //データ取得
     $http.get("./getTable.php")
         .success(function(response){
-            console.log(response);
 
             //データ取得
             $scope.tables = response;
@@ -81,8 +80,6 @@ app.controller('SelectView',function($scope , $http , SharedScopes){
         })
         //成功時の処理
         .success(function(response){
-            console.log(response);
-
             //テーブルカラム名取得
             $scope.tableStructs = response.tableStructs;
             $scope.tableLength = $scope.tableStructs.length;
