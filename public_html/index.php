@@ -45,7 +45,7 @@ print('<h3 style="text-align:center;"><i class="fa fa-handshake-o" aria-hidden="
                     <th ng-repeat="tableStruct in tableStructs">{{tableStruct}}</th>
                 </tr>
                 <tr ng-repeat="selectData in selectDatas">
-                    <td ng-cloak>{{selectData}}</td>
+                    <td ng-cloak ng-repeat="tableStruct in tableStructs">{{selectData[tableStruct]}}</td>
                 </tr>
             </table>
             <div ng-cloak ng-hide="dataExists" class="alert alert-danger" role="alert">{{tableName}}テーブルにデータが存在しません</div>

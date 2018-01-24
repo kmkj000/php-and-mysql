@@ -17,15 +17,15 @@
     $stmt = $db_link->query("SHOW COLUMNS FROM $tableName");
     if($stmt) {
         while($tableStruct = $stmt->fetch(PDO::FETCH_ASSOC) ){
-            $data['tableStructs'][] =$tableStruct["Field"];
+            $data['tableStructs'][] = $tableStruct["Field"];
         }
     }
     
     //テーブルからデータ取得
-    $stmt = $db_link->query("SELCT * FROM $tableName");
+    $stmt = $db_link->query("SELECT * FROM $tableName");
     if($stmt) {
-        while($tableData = $stmt->fetch(PDO::FETCH_ASSOC) ){
-            $data['tableData'][] = $tableData;
+        while($selectData = $stmt->fetch(PDO::FETCH_ASSOC) ){
+            $data['selectDatas'][] = $selectData;
         }
     }
     echo json_encode($data);

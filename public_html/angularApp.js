@@ -66,8 +66,11 @@ app.controller('SelectView',function($scope , $http , SharedScopes){
     SharedScopes.setScope('SelectView' , $scope);
 
     // テーブル名をクリックした時の動作
-    SharedScopes.getScope('TableView').clickFunction = function(val) {         
+    SharedScopes.getScope('TableView').clickFunction = function(val) {
+        //テーブル名クリック
         $scope.tableClick = true;
+        //データテーブルを表示
+        $scope.dataExists = true;
         //読み込み中アイコン表示
         $scope.loading = true;
         // POSTメソッドでテーブル内データを取る
@@ -81,12 +84,15 @@ app.controller('SelectView',function($scope , $http , SharedScopes){
             console.log(response);
 
             //テーブルカラム名取得
-            $scope.tableStructs = response.tableStructs
+            $scope.tableStructs = response.tableStructs;
             $scope.tableLength = $scope.tableStructs.length;
             $scope.selectDatas = response.selectDatas;
             //データが一つもなかった場合
             if($scope.selectDatas == null || $scope.selectDatas.length == 0) {
-                $scope.dataExists=false;
+                $scope.dataExists = false;
+                //テーブル構成を空にする
+                $scope.tableStructs = null;
+                //テーブル名を入れる(エラー表示用)
                 $scope.tableName = val;
             }
             //読み込み中非表示

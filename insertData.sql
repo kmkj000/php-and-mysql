@@ -1,10 +1,9 @@
 USE testdb;
 
-TRUNCATE TABLE students;
-INSERT INTO students VALUES (
-    1,
+-- TRUNCATE TABLE students;
+INSERT INTO students(grade,school,name,age,comment) VALUES (
     3,
-    "楽しい学校",
+    "いい学校",
     "name",
     "13",
     "おとなしい"
